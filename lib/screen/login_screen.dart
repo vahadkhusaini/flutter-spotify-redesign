@@ -126,7 +126,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ).textTheme.titleLarge?.copyWith(color: Colors.white) ??
                       TextStyle(color: Colors.white),
                   onTap: () {
-                    Navigator.pushNamed(context, '/phone-login');
+                    Navigator.pushNamed(
+                      context,
+                      NavigationRoute.homeRoute.name,
+                    );
                   },
                 ),
                 Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/screen/home_screen.dart';
 import 'package:flutter_starter/screen/landing_screen.dart';
 import 'package:flutter_starter/screen/login_screen.dart';
 import 'package:flutter_starter/screen/main/main_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         NavigationRoute.loginRoute.name: (context) => LoginScreen(),
         NavigationRoute.registerRoute.name: (context) => RegisterScreen(),
         NavigationRoute.landingRoute.name: (context) => const LandingScreen(),
+        NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
         NavigationRoute.mainRoute.name:
             (context) => const LandingScreen(), // Placeholder for main route
       },

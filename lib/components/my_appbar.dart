@@ -4,9 +4,14 @@ import 'package:flutter_starter/style/starter_colors.dart';
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool leading;
   final String leadingCat;
+  String actionCat;
 
-  const MyAppbar({Key? key, required this.leading, required this.leadingCat})
-    : super(key: key);
+  MyAppbar({
+    Key? key,
+    required this.leading,
+    required this.leadingCat,
+    this.actionCat = '',
+  }) : super(key: key);
 
   Widget showIcon(BuildContext context, bool leading, String leadingCat) {
     if (leading) {
@@ -46,7 +51,26 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
         );
+      } else if (leadingCat == 'search') {
+        return Image.asset(
+          'assets/icon/search.png',
+          width: 24,
+          height: 24,
+          color: Colors.white,
+        );
       }
+    }
+    return const SizedBox.shrink();
+  }
+
+  Widget showActionIcon(BuildContext context, String actionCat) {
+    if (actionCat == 'others') {
+      return Image.asset(
+        'assets/icon/others.png',
+        width: 24,
+        height: 24,
+        color: Colors.white,
+      );
     }
     return const SizedBox.shrink();
   }
@@ -68,6 +92,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
                 },
               )
               : null,
+      actions: [showActionIcon(context, actionCat), SizedBox(width: 30)],
     );
   }
 

@@ -4,6 +4,8 @@ enum StarterColors {
   lime("Lime", Color(0xFF42C83C)),
   grey("Grey", Color(0xFF1C1B1B)),
   greyYoung("Grey", Color(0xFF444444)),
+  greyLight("GreyLight", Color(0xFF343434)),
+  greyNav("GreyNav", Color(0xFF737373)),
   blue("Blue", Color(0xFF288CE9));
 
   const StarterColors(this.name, this.color);
