@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/model/album_model.dart';
 import 'package:flutter_starter/style/starter_colors.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -11,10 +12,12 @@ class FeedScreen extends StatefulWidget {
 class _FeedScreenState extends State<FeedScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  List<AlbumModel> albums = [];
 
   @override
   void initState() {
     super.initState();
+    albums = AlbumModel.getAlbums();
     _tabController = TabController(length: 4, vsync: this);
   }
 
@@ -26,6 +29,48 @@ class _FeedScreenState extends State<FeedScreen>
 
   @override
   Widget build(BuildContext context) {
+    SizedBox album() {
+      return SizedBox(
+        height: 300,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.asset(
+                    albums[index].albumPath,
+                    height: 185,
+                    width: 147,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        albums[index].title,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(albums[index].artist),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(width: 16),
+          itemCount: albums.length,
+        ),
+      );
+    }
+
     Widget tabBar() {
       return TabBar(
         controller: _tabController,
@@ -131,6 +176,9 @@ class _FeedScreenState extends State<FeedScreen>
               ),
               SizedBox(height: 20),
               tabBar(),
+              SizedBox(height: 30),
+              album(),
+
               // Warna latar belakang tab
 
               // Add more widgets here as needed
