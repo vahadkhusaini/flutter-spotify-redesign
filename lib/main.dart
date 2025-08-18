@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/screen/home_screen.dart';
 import 'package:flutter_starter/screen/landing_screen.dart';
 import 'package:flutter_starter/screen/login_screen.dart';
-import 'package:flutter_starter/screen/main/main_screen.dart';
 import 'package:flutter_starter/screen/register_screen.dart';
 import 'package:flutter_starter/static/navigation_route.dart';
 import 'package:flutter_starter/style/theme/starter_theme.dart';

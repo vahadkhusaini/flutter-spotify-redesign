@@ -1,5 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/main.dart';
 import 'package:flutter_starter/model/album_model.dart';
+import 'package:flutter_starter/model/playlist_model.dart';
 import 'package:flutter_starter/style/starter_colors.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -13,11 +16,13 @@ class _FeedScreenState extends State<FeedScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   List<AlbumModel> albums = [];
+  List<PlaylistModel> playlists = [];
 
   @override
   void initState() {
     super.initState();
     albums = AlbumModel.getAlbums();
+    playlists = PlaylistModel.getPlaylist();
     _tabController = TabController(length: 4, vsync: this);
   }
 
@@ -31,7 +36,7 @@ class _FeedScreenState extends State<FeedScreen>
   Widget build(BuildContext context) {
     SizedBox album() {
       return SizedBox(
-        height: 300,
+        height: 250,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
@@ -48,7 +53,7 @@ class _FeedScreenState extends State<FeedScreen>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -178,6 +183,88 @@ class _FeedScreenState extends State<FeedScreen>
               tabBar(),
               SizedBox(height: 30),
               album(),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Playlist",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleSmall?.copyWith(color: Colors.grey),
+                      children: [
+                        TextSpan(
+                          text: 'See More',
+                          style: Theme.of(context).textTheme.titleSmall,
+                          recognizer: TapGestureRecognizer()..onTap = () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 10);
+                  },
+                  itemCount: playlists.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        Container(
+                          height: 37,
+                          width: 37,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: StarterColors.greyLight.color,
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/icon/play.png',
+                              height: 17,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 30),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                playlists[index].title,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              Text(
+                                playlists[index].artist,
+
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          playlists[index].duration,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        SizedBox(width: 60),
+                        Image.asset('assets/icon//favorite.png', height: 21),
+                      ],
+                    );
+                  },
+                ),
+              ),
 
               // Warna latar belakang tab
 
