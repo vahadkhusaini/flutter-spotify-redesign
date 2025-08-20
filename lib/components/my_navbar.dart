@@ -42,7 +42,7 @@ class _MyNavbarState extends State<MyNavbar> {
                 color:
                     widget.index == widget.currentIndex
                         ? StarterColors.lime.color
-                        : StarterColors.greyLight.color,
+                        : Colors.transparent,
                 shape: BoxShape.rectangle,
                 borderRadius: const BorderRadius.vertical(
                   bottom: Radius.circular(100),
@@ -66,7 +66,7 @@ class _MyNavbarState extends State<MyNavbar> {
                 color:
                     widget.index == widget.currentIndex
                         ? StarterColors.lime.color
-                        : StarterColors.greyNav.color,
+                        : Colors.transparent,
               ),
             ),
           ],

@@ -4,15 +4,7 @@ import 'package:flutter_starter/style/typography/starter_text_style.dart';
 
 class StarterTheme {
   static AppBarTheme get _appBarTheme {
-    return AppBarTheme(
-      toolbarTextStyle: _textTheme.titleLarge,
-      shape: const BeveledRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(14),
-          bottomRight: Radius.circular(14),
-        ),
-      ),
-    );
+    return AppBarTheme(toolbarTextStyle: _textTheme.titleLarge, shape: null);
   }
 
   static TextTheme get _textTheme {

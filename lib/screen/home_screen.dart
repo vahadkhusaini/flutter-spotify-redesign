@@ -20,8 +20,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Widget customBar() {
       return Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: StarterColors.greyNav.color.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, -2), // changes position of shadow
+            ),
+          ],
+        ),
         height: 80,
-        decoration: BoxDecoration(color: StarterColors.greyLight.color),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -94,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+      extendBody: true,
       appBar: MyAppbar(
         leading: true,
         leadingCat: 'search',

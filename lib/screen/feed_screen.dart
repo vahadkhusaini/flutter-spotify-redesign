@@ -259,7 +259,7 @@ class _FeedScreenState extends State<FeedScreen>
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         SizedBox(width: 60),
-                        Image.asset('assets/icon//favorite.png', height: 21),
+                        Image.asset('assets/icon/favorite.png', height: 21),
                       ],
                     );
                   },

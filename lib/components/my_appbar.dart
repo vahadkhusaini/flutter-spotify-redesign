@@ -20,14 +20,20 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
           height: 32,
           width: 32,
           decoration: BoxDecoration(
-            color: StarterColors.greyYoung.color,
+            color:
+                Theme.of(context).brightness == Brightness.light
+                    ? StarterColors.greyYoung.color
+                    : Colors.grey[800],
             borderRadius: BorderRadius.circular(25),
           ),
           child: Image.asset(
             'assets/icon/arrow_back.png',
             width: 24,
             height: 24,
-            color: Colors.white,
+            color:
+                Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : Colors.grey[300],
           ),
         );
       } else if (leadingCat == 'profile') {
@@ -56,7 +62,10 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
           'assets/icon/search.png',
           width: 24,
           height: 24,
-          color: Colors.white,
+          color:
+              Theme.of(context).brightness == Brightness.light
+                  ? Colors.black87
+                  : Colors.white,
         );
       }
     }
@@ -69,7 +78,10 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
         'assets/icon/others.png',
         width: 24,
         height: 24,
-        color: Colors.white,
+        color:
+            Theme.of(context).brightness == Brightness.light
+                ? Colors.black87
+                : Colors.white,
       );
     }
     return const SizedBox.shrink();
@@ -78,7 +90,6 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Image.asset('assets/icon/icon.png', height: 33),
       leadingWidth: 100,
