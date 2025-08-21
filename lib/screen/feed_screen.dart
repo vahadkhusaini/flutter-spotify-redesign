@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/components/my_appbar.dart';
 import 'package:flutter_starter/main.dart';
 import 'package:flutter_starter/model/album_model.dart';
 import 'package:flutter_starter/model/playlist_model.dart';
@@ -126,7 +127,64 @@ class _FeedScreenState extends State<FeedScreen>
       );
     }
 
+    var playlist = SizedBox(
+      width: 300,
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        separatorBuilder: (context, index) {
+          return SizedBox(height: 10);
+        },
+        itemCount: playlists.length,
+        itemBuilder: (context, index) {
+          return Row(
+            children: [
+              Container(
+                height: 37,
+                width: 37,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: StarterColors.greyLight.color,
+                ),
+                child: Center(
+                  child: Image.asset('assets/icon/play.png', height: 17),
+                ),
+              ),
+              SizedBox(width: 30),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      playlists[index].title,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(
+                      playlists[index].artist,
+
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+              Text(
+                playlists[index].duration,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(width: 60),
+              Image.asset('assets/icon/favorite.png', height: 21),
+            ],
+          );
+        },
+      ),
+    );
     return Scaffold(
+      appBar: MyAppbar(
+        leading: true,
+        leadingCat: 'search',
+        actionCat: 'others',
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -210,61 +268,7 @@ class _FeedScreenState extends State<FeedScreen>
                 ],
               ),
               SizedBox(height: 20),
-              SizedBox(
-                width: 300,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 10);
-                  },
-                  itemCount: playlists.length,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Container(
-                          height: 37,
-                          width: 37,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: StarterColors.greyLight.color,
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/icon/play.png',
-                              height: 17,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 30),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                playlists[index].title,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                              Text(
-                                playlists[index].artist,
-
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          playlists[index].duration,
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                        SizedBox(width: 60),
-                        Image.asset('assets/icon/favorite.png', height: 21),
-                      ],
-                    );
-                  },
-                ),
-              ),
+              playlist,
 
               // Warna latar belakang tab
 

@@ -103,11 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       extendBody: true,
-      appBar: MyAppbar(
-        leading: true,
-        leadingCat: 'search',
-        actionCat: 'others',
-      ),
       body: bodyContent(),
       bottomNavigationBar: customBar(),
     );

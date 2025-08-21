@@ -4,6 +4,7 @@ import 'package:flutter_starter/style/starter_colors.dart';
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool leading;
   final String leadingCat;
+  String title;
   String actionCat;
 
   MyAppbar({
@@ -11,6 +12,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
     required this.leading,
     required this.leadingCat,
     this.actionCat = '',
+    this.title = '',
   }) : super(key: key);
 
   Widget showIcon(BuildContext context, bool leading, String leadingCat) {
@@ -87,11 +89,23 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
     return const SizedBox.shrink();
   }
 
+  Widget showTitle(BuildContext context, String title) {
+    if (title.isNotEmpty) {
+      return Text(
+        title,
+        style: Theme.of(
+          context,
+        ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+      );
+    }
+    return Image.asset('assets/icon/icon.png', height: 33);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: Image.asset('assets/icon/icon.png', height: 33),
+      title: showTitle(context, title),
       leadingWidth: 100,
       leading:
           leading
