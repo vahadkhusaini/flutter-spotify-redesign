@@ -49,7 +49,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Text(
                       playlists[index].artist,
 
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ],
                 ),
@@ -59,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               SizedBox(width: 60),
-              Image.asset('assets/icon/others.png', height: 21),
+              Image.asset('assets/icon/others-rotate.png', width: 21),
             ],
           );
         },
