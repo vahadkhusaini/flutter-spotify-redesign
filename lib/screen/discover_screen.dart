@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/components/my_appbar.dart';
+import 'package:flutter_starter/model/discover_model.dart';
 import 'package:flutter_starter/style/starter_colors.dart';
 
-class DiscoverScreen extends StatelessWidget {
+class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
+
+  @override
+  State<DiscoverScreen> createState() => _DiscoverScreenState();
+}
+
+class _DiscoverScreenState extends State<DiscoverScreen> {
+  List<DiscoverModel> discovers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    discovers = DiscoverModel.getDiscoverItems();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +70,11 @@ class DiscoverScreen extends StatelessWidget {
                 childAspectRatio: (1 / 0.6),
                 physics: NeverScrollableScrollPhysics(),
                 crossAxisCount: 2, // Menentukan 2 kolom
-                children: List.generate(10, (index) {
+                children: List.generate(discovers.length, (index) {
                   return Container(
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     decoration: BoxDecoration(
-                      color: Color(0xFF6A0066),
+                      color: discovers[index].bgColor,
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Stack(
@@ -71,7 +85,7 @@ class DiscoverScreen extends StatelessWidget {
                           child: SizedBox(
                             width: 150,
                             child: Text(
-                              'Made For You',
+                              discovers[index].title,
                               style: Theme.of(context).textTheme.titleMedium
                                   ?.copyWith(color: Colors.white),
                             ),
@@ -85,7 +99,7 @@ class DiscoverScreen extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.asset(
-                                'assets/poster/taylor2.jpeg',
+                                discovers[index].imageUrl,
                                 height: 90,
                                 width: 120,
                                 fit: BoxFit.cover,
