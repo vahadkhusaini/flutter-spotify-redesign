@@ -3,6 +3,7 @@ enum NavigationRoute {
   landingRoute("/landing"),
   registerRoute("/register"),
   homeRoute("/home"),
+  modeRoute("/mode"),
   loginRoute("/login");
 
   const NavigationRoute(this.name);

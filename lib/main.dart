@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/screen/home_screen.dart';
 import 'package:flutter_starter/screen/landing_screen.dart';
 import 'package:flutter_starter/screen/login_screen.dart';
+import 'package:flutter_starter/screen/mode_screen.dart';
 import 'package:flutter_starter/screen/register_screen.dart';
+import 'package:flutter_starter/screen/splash_screen.dart';
 import 'package:flutter_starter/static/navigation_route.dart';
 import 'package:flutter_starter/style/theme/starter_theme.dart';
 
@@ -21,15 +23,16 @@ class MyApp extends StatelessWidget {
       theme: StarterTheme.darkTheme,
       darkTheme: StarterTheme.darkTheme,
       themeMode: ThemeMode.system,
-      initialRoute: NavigationRoute.landingRoute.name,
+      initialRoute: NavigationRoute.mainRoute.name,
       debugShowCheckedModeBanner: false,
       routes: {
         NavigationRoute.loginRoute.name: (context) => LoginScreen(),
         NavigationRoute.registerRoute.name: (context) => RegisterScreen(),
         NavigationRoute.landingRoute.name: (context) => const LandingScreen(),
         NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
+        NavigationRoute.modeRoute.name: (context) => const ModeScreen(),
         NavigationRoute.mainRoute.name:
-            (context) => const LandingScreen(), // Placeholder for main route
+            (context) => const SplashScreen(), // Placeholder for main route
       },
     );
   }
