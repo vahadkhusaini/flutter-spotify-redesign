@@ -4,6 +4,7 @@ import 'package:flutter_starter/components/my_appbar.dart';
 import 'package:flutter_starter/main.dart';
 import 'package:flutter_starter/model/album_model.dart';
 import 'package:flutter_starter/model/playlist_model.dart';
+import 'package:flutter_starter/screen/player_screen.dart';
 import 'package:flutter_starter/style/starter_colors.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -35,44 +36,51 @@ class _FeedScreenState extends State<FeedScreen>
 
   @override
   Widget build(BuildContext context) {
-    SizedBox album() {
-      return SizedBox(
-        height: 250,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image.asset(
-                    albums[index].albumPath,
-                    height: 185,
-                    width: 147,
-                    fit: BoxFit.cover,
+    GestureDetector album() {
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PlayerScreen()),
+          );
+        },
+        child: SizedBox(
+          height: 250,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.asset(
+                      albums[index].albumPath,
+                      height: 185,
+                      width: 147,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        albums[index].title,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          albums[index].title,
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w500),
                         ),
-                      ),
-                      Text(albums[index].artist),
-                    ],
+                        Text(albums[index].artist),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
-          separatorBuilder: (context, index) => SizedBox(width: 16),
-          itemCount: albums.length,
+                ],
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(width: 16),
+            itemCount: albums.length,
+          ),
         ),
       );
     }

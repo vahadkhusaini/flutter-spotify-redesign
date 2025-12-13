@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
         NavigationRoute.modeRoute.name: (context) => const ModeScreen(),
         NavigationRoute.mainRoute.name:
-            (context) => const SplashScreen(), // Placeholder for main route
+            (context) => const HomeScreen(), // Placeholder for main route
       },
     );
   }
