@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/components/my_appbar.dart';
+import 'package:flutter_starter/screen/lyrics_screen.dart';
 import 'package:flutter_starter/style/starter_colors.dart';
 
 class PlayerScreen extends StatelessWidget {
@@ -67,6 +68,12 @@ class PlayerScreen extends StatelessWidget {
 
   GestureDetector lyricsToggle(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const LyricsScreen()),
+        );
+      },
       child: Column(
         children: [
           Image.asset('assets/icon/up.png', height: 24),

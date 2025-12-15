@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/components/my_appbar.dart';
 import 'package:flutter_starter/model/playlist_model.dart';
+import 'package:flutter_starter/screen/player_screen.dart';
 import 'package:flutter_starter/style/starter_colors.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -32,37 +33,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
         itemCount: playlists.length,
         itemBuilder: (context, index) {
-          return Row(
-            children: [
-              Center(
-                child: Image.asset(playlists[index].albumPath, height: 58),
-              ),
-              SizedBox(width: 30),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      playlists[index].title,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Text(
-                      playlists[index].artist,
-
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PlayerScreen()),
+              );
+            },
+            child: Row(
+              children: [
+                Center(
+                  child: Image.asset(playlists[index].albumPath, height: 58),
                 ),
-              ),
-              Text(
-                playlists[index].duration,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              SizedBox(width: 60),
-              Image.asset('assets/icon/others-rotate.png', width: 21),
-            ],
+                SizedBox(width: 30),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        playlists[index].title,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        playlists[index].artist,
+
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Text(
+                  playlists[index].duration,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                SizedBox(width: 60),
+                Image.asset('assets/icon/others-rotate.png', width: 21),
+              ],
+            ),
           );
         },
       ),
